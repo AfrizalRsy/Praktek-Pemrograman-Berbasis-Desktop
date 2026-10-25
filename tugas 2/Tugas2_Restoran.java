@@ -346,9 +346,9 @@ public class Tugas2_Restoran {
 
         // Informasi diskon 10%
         if (diskon > 0) {
-            System.out.printf("%-34s: -%s%n", "Diskon 10% (belanja > Rp100.000)", formatRupiah(diskon));
+            System.out.printf("%-34s: -%s%n", "Diskon 10% (pemesanan > Rp100.000)", formatRupiah(diskon));
         } else {
-            System.out.println("Diskon 10% tidak berlaku (belanja belum melebihi Rp100.000)");
+            System.out.println("Diskon 10% tidak berlaku (pemesanan belum melebihi Rp100.000)");
         }
 
         // Informasi penawaran beli 1 gratis 1
@@ -356,7 +356,7 @@ public class Tugas2_Restoran {
             System.out.printf("%-34s: -%s%n",
                     "Beli 1 gratis 1 (" + minumanPromo.menu.nama + ")", formatRupiah(nilaiGratis));
         } else {
-            System.out.println("Promo beli 1 gratis 1 tidak berlaku (belanja belum melebihi Rp50.000 atau tidak ada minuman)");
+            System.out.println("Promo beli 1 gratis 1 tidak berlaku (pemesanan belum melebihi Rp50.000 atau tidak ada minuman)");
         }
 
         System.out.println("-----------------------------------------------");
