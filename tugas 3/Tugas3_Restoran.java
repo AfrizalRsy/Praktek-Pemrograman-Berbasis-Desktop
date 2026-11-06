@@ -552,7 +552,6 @@ public class Tugas3_Restoran {
         }
     }
 
-    // Membaca angka desimal: harus lebih dari min dan maksimal max
     static double bacaDouble(String pesan, double min, double max) {
         while (true) {
             System.out.print(pesan);
