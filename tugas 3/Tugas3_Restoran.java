@@ -1,39 +1,32 @@
-//============================================================================
+//===================================================================================================================================
 //  PROGRAM RESTORAN - WARUNG KANG AFRIZAL (Tugas 3 - OOP (Object Oriented Programming))
 //  Konsep yang dipakai : Abstract Class, Inheritance, Polymorphism, Encapsulation, Exception Handling, File I/O, ArrayList.
 //  lokasi file : "D:\\MY UT\\Praktek Pemrograman Berbasis Desktop\\tugas 3\\menu.txt"
-// ============================================================================
-// ============================================================================
+// ==================================================================================================================================
 
-// ---------- IMPORT: memanggil library bawaan Java yang dibutuhkan ----------
-import java.io.*;                          // untuk baca/tulis file (File I/O)
-import java.text.NumberFormat;             // untuk format angka ke rupiah
-import java.time.LocalDateTime;            // untuk tanggal & jam di struk
-import java.time.format.DateTimeFormatter; // untuk mengatur format tanggal
-import java.util.ArrayList;                // array dinamis (bisa tambah/hapus)
-import java.util.Locale;                   // pengaturan bahasa/negara (Indonesia)
-import java.util.Scanner;                  // untuk membaca input dari keyboard
+import java.io.*;
+import java.text.NumberFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Locale;                   
+import java.util.Scanner;                  
 
 
 // ============================================================================
 //  1. EXCEPTION KHUSUS
 // ============================================================================
 
-// Ini membuat class exception sendiri. Dilempar (throw) ketika item menu
-// yang dicari/diakses tidak ada di daftar menu.
 class ItemTidakDitemukanException extends Exception {
     public ItemTidakDitemukanException(String pesan) {
         super(pesan); // meneruskan pesan error ke class induk (Exception)
     }
 }
 
-
 // ============================================================================
 //  2. CLASS ABSTRAK MenuItem (class dasar / induk)
 // ============================================================================
 
-// Ini membuat class abstrak MenuItem. Class abstrak tidak bisa dibuat objeknya
-// langsung (new MenuItem() tidak boleh), hanya bisa diwariskan ke class turunan.
 abstract class MenuItem {
 
     // Atribut dibuat private -> ENCAPSULATION (tidak bisa diakses langsung
@@ -93,15 +86,12 @@ abstract class MenuItem {
     // Mengubah item menjadi satu baris teks untuk disimpan ke file menu.txt
     public abstract String toFileString();
 
-    // ---------- METODE BANTU ----------
-    // Mengubah angka menjadi format rupiah, contoh: 25000 -> "Rp 25.000"
-    // static = bisa dipanggil tanpa membuat objek: MenuItem.formatRupiah(...)
+    // ---------- METODE BANTUAN ----------
     public static String formatRupiah(double nilai) {
         NumberFormat format = NumberFormat.getInstance(Locale.forLanguageTag("id-ID"));
         return "Rp " + format.format(nilai);
     }
 }
-
 
 // ============================================================================
 //  3. CLASS TURUNAN: Makanan, Minuman, Diskon  (INHERITANCE)
@@ -211,7 +201,6 @@ class Diskon extends MenuItem {
         return "DISKON|" + getNama() + "|" + getHarga() + "|" + diskon;
     }
 }
-
 
 // ============================================================================
 //  4. CLASS Menu (pengelola seluruh item menu)
@@ -531,7 +520,6 @@ class Pesanan {
 //  6. CLASS UTAMA (berisi main & menu utama)
 // ============================================================================
 
-// Ini class public. Nama class HARUS sama dengan nama file: Tugas3_Restoran.java
 public class Tugas3_Restoran {
 
     // Nama file untuk menyimpan data
@@ -786,12 +774,11 @@ public class Tugas3_Restoran {
 
     // ============================ MAIN ===================================
 
-    // Titik awal program (program mulai berjalan dari sini)
     public static void main(String[] args) {
-        muatMenu(); // 1) muat menu dari file saat program dimulai
+        muatMenu();
 
         boolean jalan = true;
-        while (jalan) { // 2) tampilkan menu utama berulang sampai pilih Keluar
+        while (jalan) { // perulangan menu utama
             System.out.println("\n===============================================");
             System.out.println("              WARUNG KANG AFRIZAL              ");
             System.out.println("===============================================");
@@ -803,7 +790,6 @@ public class Tugas3_Restoran {
             System.out.println("6. Hapus Item");
             System.out.println("7. Keluar");
 
-            // switch: memilih tindakan sesuai angka yang diketik pengguna
             switch (bacaInteger("Pilih menu (1-7): ", 1, 7)) {
                 case 1: tambahItemBaru(); break;
                 case 2: menu.tampilkanMenu(); break;
@@ -812,9 +798,9 @@ public class Tugas3_Restoran {
                 case 5: ubahHarga(); break;
                 case 6: hapusItem(); break;
                 case 7:
-                    simpanMenu(); // simpan menu terakhir sebelum keluar
+                    simpanMenu();
                     System.out.println("Terimakasih telah berkunjung ke Warung Kang Afrizal!");
-                    jalan = false; // menghentikan perulangan
+                    jalan = false;
                     break;
             }
         }
